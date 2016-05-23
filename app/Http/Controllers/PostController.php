@@ -34,8 +34,8 @@ class PostController extends Controller
     {
         $post = Post::where('id', $post_id)->first();
 
-        if (Auth::user() != $post->user()){
-            return redirect()->back();
+        if (Auth::user() != $post->user){
+            return redirect()->back()->with(['message' => 'kok balik lagi']);
         }
         
         $post->delete();
