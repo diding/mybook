@@ -20,7 +20,7 @@
                 <h3>What people say...</h3>
             </header>
             @foreach($posts as $post)
-                <article class="post">
+                <article class="post" data-postid="{{ $post->id }}">
                     <p>{{ $post->body }}</p>
                     <div class="info">
                         Posted by {{ $post->user->first_name }} on {{ $post->created_at }}
@@ -55,9 +55,14 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <button type="button" class="btn btn-primary" id="modal-save">Save changes</button>
                 </div>
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
+
+    <script>
+        var token = '{{ csrf_token() }}';
+        var url = '{{ route('edit') }}';
+    </script>
 @endsection
